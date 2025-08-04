@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="OpenCart Jenkins Regression Suite" verbose="4" thread-count="3" parallel="tests">
+
+	
+	
+	<test name="Login Page Test">
+	
+		<classes>
+			<class name="com.qa.gorest.tests.GetUserTest" />
+		</classes>
+	</test>
+	
+	</suite>
