@@ -1,6 +1,7 @@
 package com.qa.gorest.client;
 
 import java.util.Map;
+import java.util.Properties;
 
 import com.qa.gorest.frameworkexception.APIFrameworkException;
 
@@ -12,19 +13,24 @@ import io.restassured.specification.RequestSpecification;
 
 public class RestClient {
 
-	private static final String BASE_URI = "https://gorest.co.in";
-	private static final String BEARER_TOKEN = "a2a16ab3f6d4ebe774d5f32f04b1302568d98508acffabeb506634a48037fa18";
+//	 private static final String BASE_URI = "https://gorest.co.in";
+//	 private static final String BEARER_TOKEN =
+//	 "a2a16ab3f6d4ebe774d5f32f04b1302568d98508acffabeb506634a48037fa18";
 
-	private static RequestSpecBuilder specBuilder;
+	private Properties prop;
+	private String baseURI;
+	private RequestSpecBuilder specBuilder;
 
-	static {
+	public RestClient(Properties prop, String baseURI) {
 
 		specBuilder = new RequestSpecBuilder();
+		this.prop = prop;
+		this.baseURI = baseURI;
 	}
 
 	public void addAuthorizationHeader() {
 
-		specBuilder.addHeader("Authorization", "Bearer " + BEARER_TOKEN);
+		specBuilder.addHeader("Authorization", "Bearer " + prop.getProperty("tokenId"));
 	}
 
 	private void setRequestContentType(String contentType) {
@@ -50,19 +56,23 @@ public class RestClient {
 
 	}
 
-	private RequestSpecification createRequestSpec() {
+	private RequestSpecification createRequestSpec(boolean includeAuth) {
 
-		specBuilder.setBaseUri(BASE_URI);
-		addAuthorizationHeader();
+		specBuilder.setBaseUri(baseURI);
+		if (includeAuth) {
+			addAuthorizationHeader();
+		}
 
 		return specBuilder.build();
 
 	}
 
-	private RequestSpecification createRequestSpec(Map<String, String> headersMap) {
+	private RequestSpecification createRequestSpec(Map<String, String> headersMap,boolean includeAuth) {
 
-		specBuilder.setBaseUri(BASE_URI);
+		specBuilder.setBaseUri(baseURI);
+		if (includeAuth) {
 		addAuthorizationHeader();
+		}
 		if (headersMap != null) {
 
 			specBuilder.addHeaders(headersMap);
@@ -71,10 +81,12 @@ public class RestClient {
 
 	}
 
-	private RequestSpecification createRequestSpec(Map<String, String> headersMap, Map<String, String> queryParams) {
+	private RequestSpecification createRequestSpec(Map<String, String> headersMap, Map<String, String> queryParams,boolean includeAuth) {
 
-		specBuilder.setBaseUri(BASE_URI);
-		addAuthorizationHeader();
+		specBuilder.setBaseUri(baseURI);
+		if (includeAuth) {
+			addAuthorizationHeader();
+			}
 		if (headersMap != null) {
 
 			specBuilder.addHeaders(headersMap);
@@ -86,10 +98,12 @@ public class RestClient {
 
 	}
 
-	private RequestSpecification createRequestSpec(Object requestBody, String contentType) {
+	private RequestSpecification createRequestSpec(Object requestBody, String contentType,boolean includeAuth) {
 
-		specBuilder.setBaseUri(BASE_URI);
-		addAuthorizationHeader();
+		specBuilder.setBaseUri(baseURI);
+		if (includeAuth) {
+			addAuthorizationHeader();
+			}
 		setRequestContentType(contentType);
 
 		if (requestBody != null) {
@@ -100,10 +114,12 @@ public class RestClient {
 	}
 
 	private RequestSpecification createRequestSpec(Object requestBody, String contentType,
-			Map<String, String> headersMap) {
+			Map<String, String> headersMap,boolean includeAuth) {
 
-		specBuilder.setBaseUri(BASE_URI);
-		addAuthorizationHeader();
+		specBuilder.setBaseUri(baseURI);
+		if (includeAuth) {
+			addAuthorizationHeader();
+			}
 		setRequestContentType(contentType);
 		if (headersMap != null) {
 			specBuilder.addHeaders(headersMap);
@@ -116,111 +132,111 @@ public class RestClient {
 
 	}
 
-	public Response get(String serviceURL, boolean log) {
+	public Response get(String serviceURL, boolean includeAuth, boolean log) {
 
 		if (log) {
-			return RestAssured.given(createRequestSpec()).log().all().when().get(serviceURL);
+			return RestAssured.given(createRequestSpec(includeAuth)).log().all().when().get(serviceURL);
 
 		}
-		return RestAssured.given(createRequestSpec()).when().get(serviceURL);
+		return RestAssured.given(createRequestSpec(includeAuth)).when().get(serviceURL);
 
 	}
 
-	public Response get(String serviceURL, boolean log, Map<String, String> headersMap) {
+	public Response get(String serviceURL,boolean includeAuth, boolean log, Map<String, String> headersMap) {
 
 		if (log) {
-			return RestAssured.given(createRequestSpec(headersMap)).log().all().when().get(serviceURL);
+			return RestAssured.given(createRequestSpec(headersMap,includeAuth)).log().all().when().get(serviceURL);
 
 		}
-		return RestAssured.given(createRequestSpec(headersMap)).when().get(serviceURL);
+		return RestAssured.given(createRequestSpec(headersMap,includeAuth)).when().get(serviceURL);
 
 	}
 
-	public Response get(String serviceURL, boolean log, Map<String, String> headersMap,
+	public Response get(String serviceURL,boolean includeAuth, boolean log, Map<String, String> headersMap,
 			Map<String, String> queryParams) {
 
 		if (log) {
-			return RestAssured.given(createRequestSpec(headersMap, queryParams)).log().all().when().get(serviceURL);
+			return RestAssured.given(createRequestSpec(headersMap, queryParams,includeAuth)).log().all().when().get(serviceURL);
 
 		}
-		return RestAssured.given(createRequestSpec(headersMap, queryParams)).when().get(serviceURL);
+		return RestAssured.given(createRequestSpec(headersMap, queryParams,includeAuth)).when().get(serviceURL);
 
 	}
 
-	public Response post(String serviceURL, boolean log, Map<String, String> headersMap, String contentType,
+	public Response post(String serviceURL, boolean includeAuth,boolean log, Map<String, String> headersMap, String contentType,
 			Object requestBody) {
 
 		if (log) {
-			return RestAssured.given(createRequestSpec(requestBody, contentType, headersMap)).log().all().when()
+			return RestAssured.given(createRequestSpec(requestBody, contentType, headersMap,includeAuth)).log().all().when()
 					.post(serviceURL);
 
 		}
-		return RestAssured.given(createRequestSpec(requestBody, contentType, headersMap)).when().post(serviceURL);
+		return RestAssured.given(createRequestSpec(requestBody, contentType, headersMap,includeAuth)).when().post(serviceURL);
 
 	}
 
-	public Response post(String serviceURL, boolean log, String contentType, Object requestBody) {
+	public Response post(String serviceURL,boolean includeAuth, boolean log, String contentType, Object requestBody) {
 
 		if (log) {
-			return RestAssured.given(createRequestSpec(requestBody, contentType)).log().all().when().post(serviceURL);
+			return RestAssured.given(createRequestSpec(requestBody, contentType,includeAuth)).log().all().when().post(serviceURL);
 
 		}
-		return RestAssured.given(createRequestSpec(requestBody, contentType)).when().post(serviceURL);
+		return RestAssured.given(createRequestSpec(requestBody, contentType,includeAuth)).when().post(serviceURL);
 
 	}
 
-	public Response put(String serviceURL, boolean log, Map<String, String> headersMap, String contentType,
+	public Response put(String serviceURL,boolean includeAuth, boolean log, Map<String, String> headersMap, String contentType,
 			Object requestBody) {
 
 		if (log) {
-			return RestAssured.given(createRequestSpec(requestBody, contentType, headersMap)).log().all().when()
+			return RestAssured.given(createRequestSpec(requestBody, contentType, headersMap,includeAuth)).log().all().when()
 					.put(serviceURL);
 
 		}
-		return RestAssured.given(createRequestSpec(requestBody, contentType, headersMap)).when().put(serviceURL);
+		return RestAssured.given(createRequestSpec(requestBody, contentType, headersMap,includeAuth)).when().put(serviceURL);
 
 	}
 
-	public Response put(String serviceURL, boolean log, String contentType, Object requestBody) {
+	public Response put(String serviceURL,boolean includeAuth, boolean log, String contentType, Object requestBody) {
 
 		if (log) {
-			return RestAssured.given(createRequestSpec(requestBody, contentType)).log().all().when().put(serviceURL);
+			return RestAssured.given(createRequestSpec(requestBody, contentType,includeAuth)).log().all().when().put(serviceURL);
 
 		}
-		return RestAssured.given(createRequestSpec(requestBody, contentType)).when().put(serviceURL);
+		return RestAssured.given(createRequestSpec(requestBody, contentType,includeAuth)).when().put(serviceURL);
 
 	}
 
-	public Response patch(String serviceURL, boolean log, Map<String, String> headersMap, String contentType,
+	public Response patch(String serviceURL,boolean includeAuth, boolean log, Map<String, String> headersMap, String contentType,
 			Object requestBody) {
 
 		if (log) {
-			return RestAssured.given(createRequestSpec(requestBody, contentType, headersMap)).log().all().when()
+			return RestAssured.given(createRequestSpec(requestBody, contentType, headersMap,includeAuth)).log().all().when()
 					.patch(serviceURL);
 
 		}
-		return RestAssured.given(createRequestSpec(requestBody, contentType, headersMap)).when().patch(serviceURL);
+		return RestAssured.given(createRequestSpec(requestBody, contentType, headersMap,includeAuth)).when().patch(serviceURL);
 
 	}
 
-	public Response patch(String serviceURL, boolean log, String contentType, Object requestBody) {
+	public Response patch(String serviceURL,boolean includeAuth, boolean log, String contentType, Object requestBody) {
 
 		if (log) {
-			return RestAssured.given(createRequestSpec(requestBody, contentType)).log().all().when().patch(serviceURL);
+			return RestAssured.given(createRequestSpec(requestBody, contentType,includeAuth)).log().all().when().patch(serviceURL);
 
 		}
-		return RestAssured.given(createRequestSpec(requestBody, contentType)).when().patch(serviceURL);
+		return RestAssured.given(createRequestSpec(requestBody, contentType,includeAuth)).when().patch(serviceURL);
 
 	}
 
-	public Response delete(String serviceUrl, boolean log) {
+	public Response delete(String serviceUrl,boolean includeAuth, boolean log) {
 
 		if (log) {
 
-		return	RestAssured.given(createRequestSpec()).log().all().when().delete(serviceUrl);
+			return RestAssured.given(createRequestSpec(includeAuth)).log().all().when().delete(serviceUrl);
 		}
 
-		return RestAssured.given(createRequestSpec()).log().all().when().delete(serviceUrl);
+		return RestAssured.given(createRequestSpec(includeAuth)).log().all().when().delete(serviceUrl);
 
 	}
 
