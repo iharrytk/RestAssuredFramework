@@ -1,13 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="OpenCart Jenkins Regression Suite" verbose="4" thread-count="3" parallel="tests">
+<suite name="RestAssured Framework" verbose="4" thread-count="1" parallel="tests">
 
 	
 	
-	<test name="Login Page Test">
-	
+	<test name="go Rest GET HTTP call">
+	<parameter name="baseURI" value="https://gorest.co.in" />
 		<classes>
 			<class name="com.qa.gorest.tests.GetUserTest" />
+			
+			
 		</classes>
 	</test>
 	
-	</suite>
+	<test name="go Rest create HTTP call">
+	<parameter name="baseURI" value="https://gorest.co.in" />
+		<classes>
+			
+			<class name="com.qa.gorest.tests.CreateUserTest" />
+			
+		</classes>
+	</test>
+	
+	<test name="Circuit API Test">
+	<parameter name="baseURI" value="https://reqres.in" />
+		<classes>
+			<class name="com.qa.gorest.tests.CircuitTest" />
+		</classes>
+	</test>
+	
+
+</suite>
