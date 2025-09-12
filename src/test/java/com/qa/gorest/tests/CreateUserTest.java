@@ -1,15 +1,22 @@
 package com.qa.gorest.tests;
 
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.qa.gorest.base.BaseTest;
+import com.qa.gorest.client.RestClient;
+import com.qa.gorest.constants.APIHttpStatus;
 import com.qa.gorest.pojo.User;
 import com.qa.gorest.utils.StringUtils;
 
 public class CreateUserTest extends BaseTest {
 	
 	
-	//RestClient restClient;
+	@BeforeTest
+	public void creteuserSetUp() {
+		
+		restClient=new RestClient(prop, baseURI);
+	}
 	
 	@Test(priority=5)
 	public void createAUserTest() {
@@ -19,7 +26,7 @@ public class CreateUserTest extends BaseTest {
 		Integer userid=restClient.post("/public/v2/users",true, false, "json", user)
 					.then().log().all()
 						.assertThat()
-						.statusCode(201)
+						.statusCode(APIHttpStatus.CREATED_201.getCode())
 						.and()
 						.extract()
 						.path("id");
@@ -27,10 +34,12 @@ public class CreateUserTest extends BaseTest {
 		
 		//get the user that is posted -verify
 		
+		//RestClient clientGet=new RestClient(prop, baseURI);
+		
 		restClient.get("/public/v2/users/"+userid,false, true)
 					.then().log().all()
 						.assertThat()
-						.statusCode(200);
+						.statusCode(APIHttpStatus.OK_200.getCode());
 		
 		
 	}

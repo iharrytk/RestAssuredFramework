@@ -16,6 +16,9 @@ public class BaseTest {
 	protected Properties prop;
 	protected RestClient restClient;
 	protected ConfigurationManager config;
+	protected String baseURI;
+	
+	//public static final String GOREST_ENDPOINT="/public/v2/users";
 	
 	@Parameters({"baseURI"})
 	@BeforeTest
@@ -24,7 +27,8 @@ public class BaseTest {
 		RestAssured.filters(new AllureRestAssured());//generates Reports
 		config=new ConfigurationManager();
 		prop=config.init_prop();
-		restClient=new RestClient(prop, baseURI);
+		this.baseURI=baseURI;
+		//restClient=new RestClient(prop, baseURI);
 	}
 
 }

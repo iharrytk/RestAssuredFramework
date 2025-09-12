@@ -2,12 +2,12 @@
 <testng-results ignored="0" total="6" passed="6" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-08-13T00:25:26 CDT" name="RestAssured Framework" finished-at="2025-08-13T00:25:36 CDT" duration-ms="9704">
+  <suite started-at="2025-09-12T00:17:49 CDT" name="RestAssured Framework" finished-at="2025-09-12T00:17:57 CDT" duration-ms="8572">
     <groups>
     </groups>
-    <test started-at="2025-08-13T00:25:26 CDT" name="go Rest GET HTTP call" finished-at="2025-08-13T00:25:34 CDT" duration-ms="7506">
+    <test started-at="2025-09-12T00:17:49 CDT" name="go Rest GET HTTP call" finished-at="2025-09-12T00:17:55 CDT" duration-ms="6252">
       <class name="com.qa.gorest.tests.GetUserTest">
-        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:com.qa.gorest.tests.GetUserTest@676cf48]" started-at="2025-08-13T00:25:26 CDT" name="setUp" finished-at="2025-08-13T00:25:27 CDT" duration-ms="746" status="PASS">
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:com.qa.gorest.tests.GetUserTest@7d1cfb8b]" started-at="2025-09-12T00:17:49 CDT" name="setUp" finished-at="2025-09-12T00:17:49 CDT" duration-ms="307" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -18,27 +18,31 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="getAllUsersTest()[pri:1, instance:com.qa.gorest.tests.GetUserTest@676cf48]" started-at="2025-08-13T00:25:27 CDT" name="getAllUsersTest" finished-at="2025-08-13T00:25:30 CDT" duration-ms="3023" status="PASS">
+        <test-method is-config="true" signature="userSetUp()[pri:0, instance:com.qa.gorest.tests.GetUserTest@7d1cfb8b]" started-at="2025-09-12T00:17:49 CDT" name="userSetUp" finished-at="2025-09-12T00:17:49 CDT" depends-on-methods="com.qa.gorest.base.BaseTest.setUp" duration-ms="79" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- userSetUp -->
+        <test-method signature="getAllUsersTest()[pri:1, instance:com.qa.gorest.tests.GetUserTest@7d1cfb8b]" started-at="2025-09-12T00:17:49 CDT" name="getAllUsersTest" finished-at="2025-09-12T00:17:51 CDT" duration-ms="2131" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getAllUsersTest -->
-        <test-method signature="getUserTest()[pri:2, instance:com.qa.gorest.tests.GetUserTest@676cf48]" started-at="2025-08-13T00:25:30 CDT" name="getUserTest" finished-at="2025-08-13T00:25:31 CDT" duration-ms="1345" status="PASS">
+        <test-method signature="getUserTest()[pri:2, instance:com.qa.gorest.tests.GetUserTest@7d1cfb8b]" started-at="2025-09-12T00:17:51 CDT" name="getUserTest" finished-at="2025-09-12T00:17:53 CDT" duration-ms="1682" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getUserTest -->
-        <test-method signature="getUserWithQueryParamsTest()[pri:3, instance:com.qa.gorest.tests.GetUserTest@676cf48]" started-at="2025-08-13T00:25:31 CDT" name="getUserWithQueryParamsTest" finished-at="2025-08-13T00:25:32 CDT" duration-ms="627" status="PASS">
+        <test-method signature="getUserWithQueryParamsTest()[pri:3, instance:com.qa.gorest.tests.GetUserTest@7d1cfb8b]" started-at="2025-09-12T00:17:53 CDT" name="getUserWithQueryParamsTest" finished-at="2025-09-12T00:17:54 CDT" duration-ms="533" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getUserWithQueryParamsTest -->
-        <test-method signature="createAUserTest()[pri:4, instance:com.qa.gorest.tests.GetUserTest@676cf48]" started-at="2025-08-13T00:25:32 CDT" name="createAUserTest" finished-at="2025-08-13T00:25:34 CDT" duration-ms="1624" status="PASS">
+        <test-method signature="createAUserTest()[pri:4, instance:com.qa.gorest.tests.GetUserTest@7d1cfb8b]" started-at="2025-09-12T00:17:54 CDT" name="createAUserTest" finished-at="2025-09-12T00:17:55 CDT" duration-ms="1430" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createAUserTest -->
       </class> <!-- com.qa.gorest.tests.GetUserTest -->
     </test> <!-- go Rest GET HTTP call -->
-    <test started-at="2025-08-13T00:25:34 CDT" name="go Rest create HTTP call" finished-at="2025-08-13T00:25:35 CDT" duration-ms="1880">
+    <test started-at="2025-09-12T00:17:55 CDT" name="go Rest create HTTP call" finished-at="2025-09-12T00:17:56 CDT" duration-ms="1081">
       <class name="com.qa.gorest.tests.CreateUserTest">
-        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:com.qa.gorest.tests.CreateUserTest@3da30852]" started-at="2025-08-13T00:25:34 CDT" name="setUp" finished-at="2025-08-13T00:25:34 CDT" duration-ms="2" status="PASS">
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:com.qa.gorest.tests.CreateUserTest@525575]" started-at="2025-09-12T00:17:55 CDT" name="setUp" finished-at="2025-09-12T00:17:55 CDT" duration-ms="1" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -49,30 +53,38 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="createAUserTest()[pri:5, instance:com.qa.gorest.tests.CreateUserTest@3da30852]" started-at="2025-08-13T00:25:34 CDT" name="createAUserTest" finished-at="2025-08-13T00:25:35 CDT" duration-ms="1870" status="PASS">
+        <test-method is-config="true" signature="creteuserSetUp()[pri:0, instance:com.qa.gorest.tests.CreateUserTest@525575]" started-at="2025-09-12T00:17:55 CDT" name="creteuserSetUp" finished-at="2025-09-12T00:17:55 CDT" depends-on-methods="com.qa.gorest.base.BaseTest.setUp" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- creteuserSetUp -->
+        <test-method signature="createAUserTest()[pri:5, instance:com.qa.gorest.tests.CreateUserTest@525575]" started-at="2025-09-12T00:17:55 CDT" name="createAUserTest" finished-at="2025-09-12T00:17:56 CDT" duration-ms="1076" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createAUserTest -->
       </class> <!-- com.qa.gorest.tests.CreateUserTest -->
     </test> <!-- go Rest create HTTP call -->
-    <test started-at="2025-08-13T00:25:35 CDT" name="Circuit API Test" finished-at="2025-08-13T00:25:36 CDT" duration-ms="245">
-      <class name="com.qa.gorest.tests.CircuitTest">
-        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:com.qa.gorest.tests.CircuitTest@4c51cf28]" started-at="2025-08-13T00:25:35 CDT" name="setUp" finished-at="2025-08-13T00:25:35 CDT" duration-ms="2" status="PASS">
+    <test started-at="2025-09-12T00:17:56 CDT" name="fake store api get products" finished-at="2025-09-12T00:17:57 CDT" duration-ms="1184">
+      <class name="com.qa.gorest.tests.FakeStoreProductsTest">
+        <test-method is-config="true" signature="setUp(java.lang.String)[pri:0, instance:com.qa.gorest.tests.FakeStoreProductsTest@6ad3381f]" started-at="2025-09-12T00:17:56 CDT" name="setUp" finished-at="2025-09-12T00:17:56 CDT" duration-ms="1" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[https://reqres.in]]>
+                <![CDATA[https://fakestoreapi.com/]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="getAllUsersTest()[pri:0, instance:com.qa.gorest.tests.CircuitTest@4c51cf28]" started-at="2025-08-13T00:25:35 CDT" name="getAllUsersTest" finished-at="2025-08-13T00:25:36 CDT" duration-ms="236" status="PASS">
+        <test-method is-config="true" signature="userSetUp()[pri:0, instance:com.qa.gorest.tests.FakeStoreProductsTest@6ad3381f]" started-at="2025-09-12T00:17:56 CDT" name="userSetUp" finished-at="2025-09-12T00:17:56 CDT" depends-on-methods="com.qa.gorest.base.BaseTest.setUp" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- getAllUsersTest -->
-      </class> <!-- com.qa.gorest.tests.CircuitTest -->
-    </test> <!-- Circuit API Test -->
+        </test-method> <!-- userSetUp -->
+        <test-method signature="getAllProducts()[pri:1, instance:com.qa.gorest.tests.FakeStoreProductsTest@6ad3381f]" started-at="2025-09-12T00:17:56 CDT" name="getAllProducts" finished-at="2025-09-12T00:17:57 CDT" duration-ms="1176" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getAllProducts -->
+      </class> <!-- com.qa.gorest.tests.FakeStoreProductsTest -->
+    </test> <!-- fake store api get products -->
   </suite> <!-- RestAssured Framework -->
 </testng-results>

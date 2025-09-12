@@ -22,12 +22,21 @@
 		</classes>
 	</test>
 	
-	<test name="Circuit API Test">
+	<test name="fake store api get products">
+	<parameter name="baseURI" value="https://fakestoreapi.com/" />
+		<classes>
+			
+			<class name="com.qa.gorest.tests.FakeStoreProductsTest" />
+			
+		</classes>
+	</test>
+	
+	<!--<test name="Circuit API Test">
 	<parameter name="baseURI" value="https://reqres.in" />
 		<classes>
 			<class name="com.qa.gorest.tests.CircuitTest" />
 		</classes>
-	</test>
+	</test>-->
 	
 
 </suite>

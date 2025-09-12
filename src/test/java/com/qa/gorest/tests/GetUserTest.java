@@ -1,9 +1,11 @@
 package com.qa.gorest.tests;
 
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.qa.gorest.base.BaseTest;
 import com.qa.gorest.client.RestClient;
+import com.qa.gorest.constants.APIHttpStatus;
 import com.qa.gorest.pojo.User;
 import com.qa.gorest.utils.StringUtils;
 
@@ -14,6 +16,12 @@ import java.util.Map;
 
 public class GetUserTest extends BaseTest{
 	
+	@BeforeTest
+	public void userSetUp() {
+		
+		restClient=new RestClient(prop, baseURI);
+	}
+	
 	
 	
 	@Test(priority = 1)
@@ -23,7 +31,7 @@ public class GetUserTest extends BaseTest{
 		restClient.get("/public/v2/users",true, true)
 					.then().log().all()
 						.assertThat()
-						.statusCode(200);
+						.statusCode(APIHttpStatus.OK_200.getCode());
 		
 	}
 	
@@ -32,12 +40,12 @@ public class GetUserTest extends BaseTest{
 	public void getUserTest() {
 		
 		
-		restClient.get("/public/v2/users/8064664",false, true)
+		restClient.get("/public/v2/users/8117165",false, true)
 					.then().log().all()
 						.assertThat()
-						.statusCode(200)
+						.statusCode(APIHttpStatus.OK_200.getCode())
 						.and()
-						.body("id", equalTo(8064664));
+						.body("id", equalTo(8117165));
 		
 	}
 	
@@ -50,7 +58,7 @@ public class GetUserTest extends BaseTest{
 		restClient.get("/public/v2/users",false, false, null, queryParams)
 					.then().log().all()
 						.assertThat()
-						.statusCode(200);
+						.statusCode(APIHttpStatus.OK_200.getCode());
 						
 		
 	}
@@ -63,7 +71,7 @@ public class GetUserTest extends BaseTest{
 		Integer userid=restClient.post("/public/v2/users",false, true, "json", user)
 					.then().log().all()
 						.assertThat()
-						.statusCode(201)
+						.statusCode(APIHttpStatus.CREATED_201.getCode())
 						.and()
 						.extract()
 						.path("id");
@@ -74,7 +82,7 @@ public class GetUserTest extends BaseTest{
 		restClient.get("/public/v2/users/"+userid,false, true)
 					.then().log().all()
 						.assertThat()
-						.statusCode(200);
+						.statusCode(APIHttpStatus.OK_200.getCode());
 		
 		
 	}
