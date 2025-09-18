@@ -1,1 +1,0 @@
-{"uuid":"09c216c9-67fb-4a1c-905e-68959da7d1b2","name":"go Rest create HTTP call","children":["7d03b822-85ce-4d3a-9462-36762ca480af"],"befores":[{"name":"setUp","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1756844416031,"stop":1756844416031}],"afters":[],"start":1756844416030,"stop":1756844446730}
