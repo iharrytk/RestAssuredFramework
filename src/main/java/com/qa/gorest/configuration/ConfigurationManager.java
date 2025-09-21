@@ -5,26 +5,60 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
+import com.qa.gorest.frameworkexception.APIFrameworkException;
+
 public class ConfigurationManager {
 
 	private Properties prop;
 	private FileInputStream ip;
 
 	public Properties init_prop() {
-
 		prop = new Properties();
-		
+
+		// maven: cmd line argument:
+		// mvn clean install -Denv="qa"
+		// mvn clean install
+
+		String envName = System.getProperty("env");
+
 		try {
-			ip = new FileInputStream("./src/test/resource/config/config.properties");
-			prop.load(ip);
+			if (envName == null) {
+				System.out.println("no env is given...hence running tests on QA env... ");
+				ip = new FileInputStream("./src/test/resources/config/qa.config.properties");
+			} else {
+				System.out.println("Running tests on env: " + envName);
+
+				switch (envName.toLowerCase().trim()) {
+				case "qa":
+					ip = new FileInputStream("./src/test/resource/config/qa.config.properties");
+					break;
+				case "dev":
+					ip = new FileInputStream("./src/test/resource/config/dev.config.properties");
+					break;
+				case "stage":
+					ip = new FileInputStream("./src/test/resource/config/stage.config.properties");
+					break;
+				case "prod":
+					ip = new FileInputStream("./src/test/resource/config/config.properties");
+					break;
+
+				default:
+					System.out.println("Please pass the right env name..." + envName);
+					throw new APIFrameworkException("WRONG ENV IS Given");
+				}
+			}
 		} catch (FileNotFoundException e) {
-			
-			e.printStackTrace();
-		} catch (IOException e) {
-			
 			e.printStackTrace();
 		}
-		
+
+		try
+
+		{
+			prop.load(ip);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		return prop;
 
 	}
