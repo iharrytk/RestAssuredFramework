@@ -40,12 +40,12 @@ public class GetUserTest extends BaseTest{
 	public void getUserTest() {
 		
 		
-		restClient.get("/public/v2/users/8141770",false, true)
+		restClient.get("/public/v2/users/8153019",false, true)
 					.then().log().all()
 						.assertThat()
 						.statusCode(APIHttpStatus.OK_200.getCode())
 						.and()
-						.body("id", equalTo(8141770));
+						.body("id", equalTo(8153019));
 		
 	}
 	
