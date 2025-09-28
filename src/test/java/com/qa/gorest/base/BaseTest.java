@@ -27,7 +27,7 @@ public class BaseTest {
 		RestAssured.filters(new AllureRestAssured());//generates Reports
 		config=new ConfigurationManager();
 		prop=config.init_prop();
-		//this.baseURI=baseURI;
+		this.baseURI=baseURI;
 		//restClient=new RestClient(prop, baseURI);
 	}
 
