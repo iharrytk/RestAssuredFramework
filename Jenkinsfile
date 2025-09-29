@@ -37,7 +37,7 @@ pipeline
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     git 'https://github.com/iharrytk/RestAssuredFramework.git'
-                    bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resource/testrunner/testng_regression.xml"
+                    bat "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resource/testrunners/testng_regression.xml"
                     
                 }
             }
